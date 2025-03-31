@@ -10,4 +10,9 @@ ip=$6
 port=$7
 repo=$8
 
-curl -X POST -vvvv -u $username:$password -H 'Content-Type: multipart/form-data' -F 'asset0=@$file' -F 'asset0.filename=$filename' -F 'directory=$remote_dir' http://$ip:$port/service/rest/internal/ui/upload/$repo
+
+curl --location 'http://$ip:$port/service/rest/internal/ui/upload/$repo' \
+-u $username:$password 
+--form 'asset0=@"$file"' \
+--form 'asset0.filename="$filename"' \
+--form 'directory="$remote_dir"'
